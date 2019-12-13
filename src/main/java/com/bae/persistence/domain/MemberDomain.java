@@ -11,7 +11,7 @@ public class MemberDomain {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String firstName;
 	private String lastName;
 	private int age;
@@ -19,6 +19,23 @@ public class MemberDomain {
 	private String typeOfInjury;
 	private int lengthOfInjury;
 	private String timePeriod;
+
+	public MemberDomain() {
+		super();
+
+	}
+
+	public MemberDomain(String firstName, String lastName, int age, String position, String typeOfInjury,
+			int lengthOfInjury, String timePeriod) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
+		this.position = position;
+		this.typeOfInjury = typeOfInjury;
+		this.lengthOfInjury = lengthOfInjury;
+		this.timePeriod = timePeriod;
+	}
 
 	public Long getId() {
 		return id;
@@ -128,19 +145,6 @@ public class MemberDomain {
 		} else if (!typeOfInjury.equals(other.typeOfInjury))
 			return false;
 		return true;
-	}
-
-	public MemberDomain(Long id, String firstName, String lastName, int age, String position, String typeOfInjury,
-			int lengthOfInjury, String timePeriod) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.age = age;
-		this.position = position;
-		this.typeOfInjury = typeOfInjury;
-		this.lengthOfInjury = lengthOfInjury;
-		this.timePeriod = timePeriod;
 	}
 
 }

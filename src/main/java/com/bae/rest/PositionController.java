@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.websocket.server.PathParam;
 
+import org.aspectj.weaver.Position;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,47 +15,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bae.persistence.domain.MemberDomain;
+import com.bae.persistence.domain.PositionDomain;
 import com.bae.service.MemberService;
+import com.bae.service.PositionService;
 
 @RestController
 @RequestMapping("/injurylistapp")
-public class MemberRest {
+public class PositionController {
+	
+	private PositionService positionService;
 
-	private MemberService memberService;
-
-	public MemberRest(MemberService memberService) {
+	public PositionController(PositionService positionService) {
 		
-		this.memberService = memberService;
+		this.positionService = positionService;
 	}
 
 	@GetMapping("/getAll")
-	public List<MemberDomain> getAllMembers() {
+	public List<PositionDomain> getAllPositions() {
 
-		return memberService.getAllMembers();
+		return positionService.getAllPositions();
 
 	}
 
 	@PostMapping("/create")
-	public MemberDomain addNewMember(@RequestBody MemberDomain member) {
+	public PositionDomain addNewPosition(@RequestBody PositionDomain position) {
 
-		return memberService.addNewMember(member);
+		return positionService.addNewPosition(position);
 
 	}
 
 	@PutMapping("/update/{id}")
-	public MemberDomain updateMember(@PathParam("id") Long id, @RequestBody MemberDomain member) {
+	public PositionDomain updatePosition(@PathParam("id") long id,@RequestBody PositionDomain position) {
 		
-		return memberService.updateMember(id, member);
+		return positionService.updatePosition(id, position);
 		
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public void deleteUserDetails(@PathVariable Long id) {
-		this.memberService.deleteMember(id);
+		this.positionService.deletePosition(id);
 	}
-	
-	
-	
-	
-	
 }

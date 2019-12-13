@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.websocket.server.PathParam;
 
-import org.aspectj.weaver.Position;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,44 +15,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bae.persistence.domain.MemberDomain;
-import com.bae.persistence.domain.PositionDomain;
 import com.bae.service.MemberService;
-import com.bae.service.PositionService;
 
 @RestController
 @RequestMapping("/injurylistapp")
-public class PositionRest {
-	
-	private PositionService positionService;
+public class MemberController {
 
-	public PositionRest(PositionService positionService) {
-		
-		this.positionService = positionService;
+	private MemberService memberService;
+
+	@Autowired
+	public MemberController(MemberService memberService) {
+		super();
+		this.memberService = memberService;
 	}
 
 	@GetMapping("/getAll")
-	public List<PositionDomain> getAllPositions() {
-
-		return positionService.getAllPositions();
-
+	public List<MemberDomain> getAllMembers() {
+		return memberService.getAllMembers();
 	}
 
 	@PostMapping("/create")
-	public PositionDomain addNewPosition(@RequestBody PositionDomain position) {
-
-		return positionService.addNewPosition(position);
-
+	public MemberDomain addNewMember(@RequestBody MemberDomain member) {
+		return memberService.addNewMember(member);
 	}
 
 	@PutMapping("/update/{id}")
-	public PositionDomain updatePosition(@PathParam("id") long id,@RequestBody PositionDomain position) {
-		
-		return PositionService.updatePosition(id, position);
-		
+	public MemberDomain updateMember(@PathParam("id") Long id, @RequestBody MemberDomain member) {
+		return memberService.updateMember(id, member);
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public void deleteUserDetails(@PathVariable Long id) {
-		this.positionService.deletePosition(id);
+		this.memberService.deleteMember(id);
 	}
+	
+	
+	
+	
+	
 }

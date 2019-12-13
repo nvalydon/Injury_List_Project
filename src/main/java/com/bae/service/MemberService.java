@@ -2,6 +2,7 @@ package com.bae.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bae.persistence.domain.MemberDomain;
@@ -12,29 +13,26 @@ public class MemberService {
 
 	private MemberRepository memberRepo;
 
-//Constructor
+	//Constructor
+	@Autowired
 	public MemberService(MemberRepository memberRepo) {
-		super();
 		this.memberRepo = memberRepo;
-
 	}
 
-//Creating Members
+	//Creating Members
 	public MemberDomain addNewMember(MemberDomain member) {
 
 		return memberRepo.save(member);
 
 	}
 
-//Read Members
-
+	//Read Members
 	public List<MemberDomain> getAllMembers() {
 		return this.memberRepo.findAll();
 
 	}
 
-//Update Members
-
+	//Update Members
 	public MemberDomain updateMember( Long id, MemberDomain member) {
 		MemberDomain toUpdate = this.memberRepo.getOne(id);
 		toUpdate.setFirstName(member.getFirstName());
