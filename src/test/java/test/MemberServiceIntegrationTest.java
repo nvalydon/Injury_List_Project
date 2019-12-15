@@ -1,4 +1,7 @@
 package test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,62 +23,52 @@ import com.bae.service.MemberService;
 import main.App;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {App.class}) 
+@ContextConfiguration(classes = { App.class })
 @SpringBootTest
 public class MemberServiceIntegrationTest {
 
 	@MockBean
+	@Autowired
 	private MemberService service;
-	
+
 	@MockBean
 	@Autowired
 	private MemberRepository memberRepo;
-	
-	//private ObjectMapper mapper = new ObjectMapper();
+
+	// private ObjectMapper mapper = new ObjectMapper();
 
 	private MemberDomain member1;
-	private MemberDomain member2;	
-	
+	// private MemberDomain member2;
+
+	private MemberDomain testMemberwithID;
+
 	@Before
 	public void init() {
-		this.memberRepo.deleteAll();
-		
+		// this.memberRepo.deleteAll();
+
 		this.member1 = new MemberDomain("Kieran", "Tierney", 22, "LB", "Dislocated Shouler", 3, "Months");
-		this.member2 = new MemberDomain("Kieran", "Tierney", 22, "LB", "Dislocated Shouler", 3, "Months");
-		member2.setId(1L);
-		
-	}
-	@Test
-	public void testAddNewMember() {
-		Assert.assertEquals(this.member1, this.service.addNewMember(member2));
+		this.memberRepo.deleteAll();
+		this.testMemberwithID = this.memberRepo.save(this.member1);
+		// this.member2 = this.memberRepo.save(this.member1);
+		// this.member2 = new MemberDomain("Kieran", "Tierney", 22, "LB", "Dislocated
+		// Shouler", 3, "Months");
+		// this.member2.setId(1L);
+
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	@Test
-//	public void testCreateUser() throws JsonProcessingException, Exception {
-//
-//		Mockito.when(this.service.addNewMember(member1)).thenReturn(member2);
-//		this.mock
-//				.perform(request(HttpMethod.POST, "localhost:8080/injurylistapp/create").contentType(MediaType.APPLICATION_JSON)
-//						.content(this.mapper.writeValueAsString(member1)).accept(MediaType.APPLICATION_JSON))
-//				.andExpect(status().isOk());
-//	}
+	@Test
+	public void testAddNewMember() {
+		// Assert.assertEquals(this.member1, this.service.addNewMember(this.member2));
+		// Assert.assertEquals(this.member1.toString(),
+		// this.service.addNewMember(this.member2).toString());
+		Assert.assertEquals(this.testMemberwithID, this.service.addNewMember(member1));
+	}
+
+	@Test
+	public void testDeleteMember() {
+
+		Assert.assertThat(this.service.deleteMember(this.testMemberwithID.getId())).isFalse();
+
+	}
 
 }

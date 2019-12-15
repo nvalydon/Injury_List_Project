@@ -8,32 +8,34 @@ import org.springframework.stereotype.Service;
 import com.bae.persistence.domain.MemberDomain;
 import com.bae.persistence.repo.MemberRepository;
 
+import exceptions.MemberNotFoundException;
+
 @Service
 public class MemberService {
 
 	private MemberRepository memberRepo;
 
-	//Constructor
+	// Constructor
 	@Autowired
 	public MemberService(MemberRepository memberRepo) {
 		this.memberRepo = memberRepo;
 	}
 
-	//Creating Members
+	// Creating Members
 	public MemberDomain addNewMember(MemberDomain member) {
 
 		return memberRepo.save(member);
 
 	}
 
-	//Read Members
+	// Read Members
 	public List<MemberDomain> getAllMembers() {
 		return this.memberRepo.findAll();
 
 	}
 
-	//Update Members
-	public MemberDomain updateMember( Long id, MemberDomain member) {
+	// Update Members
+	public MemberDomain updateMember(Long id, MemberDomain member) {
 		MemberDomain toUpdate = this.memberRepo.getOne(id);
 		toUpdate.setFirstName(member.getFirstName());
 		toUpdate.setLastName(member.getLastName());
@@ -47,9 +49,14 @@ public class MemberService {
 	}
 
 //Deleting User
-	public void deleteMember(long id) {
+	public boolean deleteMember(long id) {
+
+		if (!this.memberRepo.existsById(id)) {
+			throw new MemberNotFoundException();
+		}
 
 		this.memberRepo.deleteById(id);
+		return this.memberRepo.existsById(id);
 	}
 
 }
