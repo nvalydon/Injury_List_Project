@@ -5,21 +5,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
-
-
-
-
-
-
 @Entity
 public class PositionDomain {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String position;
-	
+
+	public PositionDomain() {
+		super();
+	}
+
+	public PositionDomain(Long id, String position) {
+		super();
+		this.id = id;
+		this.position = position;
+	}
 
 	public Long getId() {
 		return id;
@@ -36,8 +38,5 @@ public class PositionDomain {
 	public void setPosition(String position) {
 		this.position = position;
 	}
-	
-	
-	
 
 }

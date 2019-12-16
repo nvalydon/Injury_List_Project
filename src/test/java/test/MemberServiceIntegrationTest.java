@@ -2,6 +2,8 @@ package test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,7 +32,7 @@ public class MemberServiceIntegrationTest {
 	@MockBean
 	@Autowired
 	private MemberService service;
-
+	
 	@MockBean
 	@Autowired
 	private MemberRepository memberRepo;
@@ -40,18 +42,24 @@ public class MemberServiceIntegrationTest {
 	private MemberDomain member1;
 	// private MemberDomain member2;
 
-	private MemberDomain testMemberwithID;
+	private MemberDomain testMemberWithID;
+	// private MemberDomain testMemberWithID2;
 
 	@Before
 	public void init() {
 		// this.memberRepo.deleteAll();
 
 		this.member1 = new MemberDomain("Kieran", "Tierney", 22, "LB", "Dislocated Shouler", 3, "Months");
+		// this.member2 = new MemberDomain("Alex", "Lacazette", 28, "ST", "Sprained
+		// Ankle", 1, "Month");
+
 		this.memberRepo.deleteAll();
-		this.testMemberwithID = this.memberRepo.save(this.member1);
+		this.testMemberWithID = this.memberRepo.save(this.member1);
+		// this.testMemberWithID2 = this.memberRepo.save(this.member2);
+
 		// this.member2 = this.memberRepo.save(this.member1);
 		// this.member2 = new MemberDomain("Kieran", "Tierney", 22, "LB", "Dislocated
-		// Shouler", 3, "Months");
+		// Shoulder", 3, "Months");
 		// this.member2.setId(1L);
 
 	}
@@ -61,14 +69,37 @@ public class MemberServiceIntegrationTest {
 		// Assert.assertEquals(this.member1, this.service.addNewMember(this.member2));
 		// Assert.assertEquals(this.member1.toString(),
 		// this.service.addNewMember(this.member2).toString());
-		Assert.assertEquals(this.testMemberwithID, this.service.addNewMember(member1));
+		Assert.assertEquals(this.testMemberWithID, this.service.addNewMember(member1));
 	}
+
+//	@Test
+//	public void testFindMembersByID() {
+//		Assert.assertTrue(this.service.readMembers()).isEqualTo(this.testMemberWithID);
+//	}
 
 	@Test
-	public void testDeleteMember() {
-
-		Assert.assertThat(this.service.deleteMember(this.testMemberwithID.getId())).isFalse();
-
+	public void testReadMembers() {
+		System.out.println(this.service.readMembers());
+		assertThat(this.service.readMembers()).isEqualTo(Arrays.asList(new MemberDomain[] { this.testMemberWithID }));
 	}
+
+//	@Test
+//	public void testUpdateMember() {
+//		MemberDomain newMember = new MemberDomain("James", "Tierney", 25, "LB", "Dislocated Shouler", 3, "Months");
+//		MemberDomain updatedMember = new MemberDomain(newMember.getFirstName(), newMember.getLastName(),
+//				newMember.getAge(), newMember.getPosition(), newMember.getTypeOfInjury(), newMember.getLengthOfInjury(),
+//				newMember.getTimePeriod());
+//
+//		updatedMember.setId(this.testMemberWithID.getId());
+//
+//		assertThat(this.service.updateMember(newMember, this.testMemberWithID.getId())).isEqualTo(updatedMember);
+//	}
+//
+//	@Test
+//	public void testDeleteMember() {
+//
+//		Assert.assertTrue(this.service.deleteMember(this.testMemberWithID.getId()));
+//
+//	}
 
 }

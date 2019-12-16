@@ -31,7 +31,7 @@ public class MemberController {
 
 	@GetMapping("/getAll")
 	public List<MemberDomain> getAllMembers() {
-		return memberService.getAllMembers();
+		return memberService.readMembers();
 	}
 
 	@PostMapping("/create")
@@ -41,7 +41,7 @@ public class MemberController {
 
 	@PutMapping("/update/{id}")
 	public MemberDomain updateMember(@PathParam("id") Long id, @RequestBody MemberDomain member) {
-		return memberService.updateMember(id, member);
+		return memberService.updateMember(member, id);
 	}
 	
 	@DeleteMapping("/delete/{id}")

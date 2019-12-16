@@ -1,6 +1,7 @@
 package com.bae.service;
 
 import java.util.List;
+import java.util.function.IntPredicate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,14 +30,19 @@ public class MemberService {
 	}
 
 	// Read Members
-	public List<MemberDomain> getAllMembers() {
+	public List<MemberDomain> readMembers() {
 		return this.memberRepo.findAll();
 
 	}
 
+	public MemberDomain findMemberByID(Long id) {
+
+		return this.memberRepo.findById(id).orElseThrow(() -> new MemberNotFoundException());
+	}
+
 	// Update Members
-	public MemberDomain updateMember(Long id, MemberDomain member) {
-		MemberDomain toUpdate = this.memberRepo.getOne(id);
+	public MemberDomain updateMember(MemberDomain member, Long id) {
+		MemberDomain toUpdate = findMemberByID(id);
 		toUpdate.setFirstName(member.getFirstName());
 		toUpdate.setLastName(member.getLastName());
 		toUpdate.setAge(member.getAge());
@@ -44,12 +50,13 @@ public class MemberService {
 		toUpdate.setTypeOfInjury(member.getTypeOfInjury());
 		toUpdate.setLengthOfInjury(member.getLengthOfInjury());
 		toUpdate.setTimePeriod(member.getTimePeriod());
-		return null;
+		
+		return this.memberRepo.save(toUpdate);
 
 	}
 
 //Deleting User
-	public boolean deleteMember(long id) {
+	public boolean deleteMember(Long id) {
 
 		if (!this.memberRepo.existsById(id)) {
 			throw new MemberNotFoundException();
@@ -57,6 +64,12 @@ public class MemberService {
 
 		this.memberRepo.deleteById(id);
 		return this.memberRepo.existsById(id);
+	}
+
+//Finding 1 User with ID
+
+	public List<MemberDomain> readMember() {
+		return this.memberRepo.findAll();
 	}
 
 }
