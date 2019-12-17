@@ -17,11 +17,11 @@ public class PositionDomain {
 		super();
 	}
 
-	public PositionDomain(Long id, String position) {
-		super();
-		this.id = id;
-		this.position = position;
-	}
+//	public PositionDomain(Long id, String position) {
+//		super();
+//		this.id = id;
+//		this.position = position;
+//	}
 
 	public Long getId() {
 		return id;

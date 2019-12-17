@@ -5,6 +5,7 @@ import java.util.List;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,33 +15,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bae.persistence.domain.MemberDomain;
-import com.bae.service.MemberService;
+import com.bae.persistence.domain.PlayerDomain;
+import com.bae.service.PlayerService;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/injurylistapp")
-public class MemberController {
+public class PlayerController {
 
-	private MemberService memberService;
+	private PlayerService memberService;
 
 	@Autowired
-	public MemberController(MemberService memberService) {
+	public PlayerController(PlayerService memberService) {
 		super();
 		this.memberService = memberService;
 	}
 
 	@GetMapping("/getAll")
-	public List<MemberDomain> getAllMembers() {
+	public List<PlayerDomain> getAllMembers() {
 		return memberService.readMembers();
 	}
 
 	@PostMapping("/create")
-	public MemberDomain addNewMember(@RequestBody MemberDomain member) {
+	public PlayerDomain addNewMember(@RequestBody PlayerDomain member) {
 		return memberService.addNewMember(member);
 	}
 
 	@PutMapping("/update/{id}")
-	public MemberDomain updateMember(@PathParam("id") Long id, @RequestBody MemberDomain member) {
+	public PlayerDomain updateMember(@PathParam("id") Long id, @RequestBody PlayerDomain member) {
 		return memberService.updateMember(member, id);
 	}
 	

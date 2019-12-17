@@ -4,9 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.bae.persistence.domain.MemberDomain;
 import com.bae.persistence.domain.PositionDomain;
-import com.bae.persistence.repo.MemberRepository;
+import com.bae.persistence.repo.PlayerRepository;
 import com.bae.persistence.repo.PositionRepository;
 
 @Service

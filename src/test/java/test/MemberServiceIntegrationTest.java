@@ -17,10 +17,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.bae.persistence.domain.MemberDomain;
-import com.bae.persistence.repo.MemberRepository;
-import com.bae.rest.MemberController;
-import com.bae.service.MemberService;
+import com.bae.persistence.domain.PlayerDomain;
+import com.bae.persistence.repo.PlayerRepository;
+import com.bae.rest.PlayerController;
+import com.bae.service.PlayerService;
 
 import main.App;
 
@@ -31,30 +31,30 @@ public class MemberServiceIntegrationTest {
 
 	@MockBean
 	@Autowired
-	private MemberService service;
+	private PlayerService service;
 	
 	@MockBean
 	@Autowired
-	private MemberRepository memberRepo;
+	private PlayerRepository memberRepo;
 
 	// private ObjectMapper mapper = new ObjectMapper();
 
-	private MemberDomain member1;
+	private PlayerDomain player1;
 	// private MemberDomain member2;
 
-	private MemberDomain testMemberWithID;
+	private PlayerDomain testMemberWithID;
 	// private MemberDomain testMemberWithID2;
 
 	@Before
 	public void init() {
 		// this.memberRepo.deleteAll();
 
-		this.member1 = new MemberDomain("Kieran", "Tierney", 22, "LB", "Dislocated Shouler", 3, "Months");
+		this.player1 = new PlayerDomain("Kieran", "Tierney", 22, "Dislocated Shouler", 3, "Months");
 		// this.member2 = new MemberDomain("Alex", "Lacazette", 28, "ST", "Sprained
 		// Ankle", 1, "Month");
 
 		this.memberRepo.deleteAll();
-		this.testMemberWithID = this.memberRepo.save(this.member1);
+		this.testMemberWithID = this.memberRepo.save(this.player1);
 		// this.testMemberWithID2 = this.memberRepo.save(this.member2);
 
 		// this.member2 = this.memberRepo.save(this.member1);
@@ -69,7 +69,7 @@ public class MemberServiceIntegrationTest {
 		// Assert.assertEquals(this.member1, this.service.addNewMember(this.member2));
 		// Assert.assertEquals(this.member1.toString(),
 		// this.service.addNewMember(this.member2).toString());
-		Assert.assertEquals(this.testMemberWithID, this.service.addNewMember(member1));
+		Assert.assertEquals(this.testMemberWithID, this.service.addNewMember(player1));
 	}
 
 //	@Test
@@ -80,7 +80,7 @@ public class MemberServiceIntegrationTest {
 	@Test
 	public void testReadMembers() {
 		System.out.println(this.service.readMembers());
-		assertThat(this.service.readMembers()).isEqualTo(Arrays.asList(new MemberDomain[] { this.testMemberWithID }));
+		assertThat(this.service.readMembers()).isEqualTo(Arrays.asList(new PlayerDomain[] { this.testMemberWithID }));
 	}
 
 //	@Test

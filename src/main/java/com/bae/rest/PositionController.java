@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bae.persistence.domain.MemberDomain;
 import com.bae.persistence.domain.PositionDomain;
-import com.bae.service.MemberService;
+import com.bae.service.PlayerService;
 import com.bae.service.PositionService;
 
 @RestController
