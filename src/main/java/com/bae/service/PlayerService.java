@@ -1,7 +1,6 @@
 package com.bae.service;
 
 import java.util.List;
-import java.util.function.IntPredicate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,15 +40,19 @@ public class PlayerService {
 	}
 
 	// Update Members
-	public PlayerDomain updateMember( PlayerDomain member, Long id) {
+	public PlayerDomain updateMember( PlayerDomain player, Long id) {
+		System.out.println(id);
 		PlayerDomain toUpdate = findMemberByID(id);
-		toUpdate.setFirstName(member.getFirstName());
-		toUpdate.setLastName(member.getLastName());
-		toUpdate.setAge(member.getAge());
-		toUpdate.setTypeOfInjury(member.getTypeOfInjury());
-		toUpdate.setLengthOfInjury(member.getLengthOfInjury());
-		toUpdate.setTimePeriod(member.getTimePeriod());
-
+		System.out.println("2");
+		System.out.println(toUpdate);
+		toUpdate.setFirstName(player.getFirstName());
+		toUpdate.setLastName(player.getLastName());
+		toUpdate.setAge(player.getAge());
+		toUpdate.setTypeOfInjury(player.getTypeOfInjury());
+		toUpdate.setLengthOfInjury(player.getLengthOfInjury());
+		toUpdate.setTimePeriod(player.getTimePeriod());
+		System.out.println("3");
+		System.out.println(toUpdate);
 		return this.playerRepo.save(toUpdate);
 
 	}
@@ -64,11 +67,5 @@ public class PlayerService {
 		this.playerRepo.deleteById(id);
 		return this.playerRepo.existsById(id);
 	}
-
-////Finding 1 User with ID
-//
-//	public List<MemberDomain> readMember() {
-//		return this.memberRepo.findAll();
-//	}
 
 }

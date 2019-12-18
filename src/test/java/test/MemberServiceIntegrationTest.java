@@ -17,12 +17,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.bae.App;
 import com.bae.persistence.domain.PlayerDomain;
 import com.bae.persistence.repo.PlayerRepository;
 import com.bae.rest.PlayerController;
 import com.bae.service.PlayerService;
-
-import main.App;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { App.class })
@@ -77,11 +76,11 @@ public class MemberServiceIntegrationTest {
 //		Assert.assertTrue(this.service.readMembers()).isEqualTo(this.testMemberWithID);
 //	}
 
-	@Test
-	public void testReadMembers() {
-		System.out.println(this.service.readMembers());
-		assertThat(this.service.readMembers()).isEqualTo(Arrays.asList(new PlayerDomain[] { this.testMemberWithID }));
-	}
+//	@Test
+//	public void testReadMembers() {
+//		System.out.println(this.service.readMembers());
+//		assertThat(this.service.readMembers()).isEqualTo(Arrays.asList(new PlayerDomain[] { this.testMemberWithID }));
+//	}
 
 //	@Test
 //	public void testUpdateMember() {
@@ -94,12 +93,12 @@ public class MemberServiceIntegrationTest {
 //
 //		assertThat(this.service.updateMember(newMember, this.testMemberWithID.getId())).isEqualTo(updatedMember);
 //	}
-//
-//	@Test
-//	public void testDeleteMember() {
-//
-//		Assert.assertTrue(this.service.deleteMember(this.testMemberWithID.getId()));
-//
-//	}
+
+	@Test
+	public void testDeleteMember() {
+
+		Assert.assertTrue(this.service.deleteMember(this.testMemberWithID.getId()));
+
+	}
 
 }

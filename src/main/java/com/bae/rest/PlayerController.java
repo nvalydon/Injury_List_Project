@@ -20,7 +20,7 @@ import com.bae.service.PlayerService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/injurylistapp")
+@RequestMapping("/player")
 public class PlayerController {
 
 	private PlayerService memberService;
@@ -42,7 +42,7 @@ public class PlayerController {
 	}
 
 	@PutMapping("/update/{id}")
-	public PlayerDomain updateMember(@PathParam("id") Long id, @RequestBody PlayerDomain member) {
+	public PlayerDomain updateMember(@PathVariable("id") Long id, @RequestBody PlayerDomain member) {
 		return memberService.updateMember(member, id);
 	}
 	

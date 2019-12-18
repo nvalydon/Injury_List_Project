@@ -107,60 +107,9 @@ public class PlayerDomain {
 	public void setPosition(List<PositionDomain> position) {
 		this.position = position;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 
-//	@Override
-//	public boolean equals(Object obj) {
-//		if (this == obj)
-//			return true;
-//		if (obj == null)
-//			return false;
-//		if (getClass() != obj.getClass())
-//			return false;
-//		MemberDomain other = (MemberDomain) obj;
-//		if (age != other.age)
-//			return false;
-//		if (firstName == null) {
-//			if (other.firstName != null)
-//				return false;
-//		} else if (!firstName.equals(other.firstName))
-//			return false;
-//		if (id == null) {
-//			if (other.id != null)
-//				return false;
-//		} else if (!id.equals(other.id))
-//			return false;
-//		if (lastName == null) {
-//			if (other.lastName != null)
-//				return false;
-//		} else if (!lastName.equals(other.lastName))
-//			return false;
-//		if (lengthOfInjury != other.lengthOfInjury)
-//			return false;
-//		if (timePeriod == null) {
-//			if (other.timePeriod != null)
-//				return false;
-//		} else if (!timePeriod.equals(other.timePeriod))
-//			return false;
-//		if (typeOfInjury == null) {
-//			if (other.typeOfInjury != null)
-//				return false;
-//		} else if (!typeOfInjury.equals(other.typeOfInjury))
-//			return false;
-//		return true;
-//	}
 
 }
