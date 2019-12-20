@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.bae.persistence.domain.PositionDomain;
+import com.bae.persistence.domain.Position;
 import com.bae.persistence.repo.PositionRepository;
 
 @Service
@@ -20,20 +20,20 @@ public class PositionService {
 	}
 
 //Create Position
-	public PositionDomain addNewPosition(PositionDomain position) {
+	public Position addNewPosition(Position position) {
 		return positionRepo.save(position);
 	}
 
 //Read Position
-	public List<PositionDomain> getAllPositions() {
+	public List<Position> getAllPositions() {
 		return this.positionRepo.findAll();
 
 	}
 
 // Update Members
 
-	public PositionDomain updatePosition( Long id, PositionDomain position) {
-		PositionDomain toUpdate = this.positionRepo.getOne(id);
+	public Position updatePosition( Long id, Position position) {
+		Position toUpdate = this.positionRepo.getOne(id);
 		toUpdate.setPosition(position.getPosition());
 		return null;
 

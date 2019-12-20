@@ -16,7 +16,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.bae.persistence.domain.PlayerDomain;
+import com.bae.persistence.domain.Player;
 import com.bae.persistence.repo.PlayerRepository;
 import com.bae.service.PlayerService;
 
@@ -29,20 +29,21 @@ public class PlayerServiceUnitTest {
 	@Mock
 	private PlayerRepository playerRepo;
 
-	private List<PlayerDomain> playerList;
+	private List<Player> playerList;
 
-	private PlayerDomain testPlayer;
+	private Player testPlayer;
 
-	private PlayerDomain testPlayerWithID;
+	private Player testPlayerWithID;
 
-	final long id = 1L;
+	private Long id = 1L;
 
 	@Before
 	public void init() {
+		// this.playerRepo.deleteAll();
 		this.playerList = new ArrayList<>();
 		this.playerList.add(testPlayer);
-		this.testPlayer = new PlayerDomain("Kieran", "Tierney", 22, "Dislocated Shoulder", 3, "Months");
-		this.testPlayerWithID = new PlayerDomain(testPlayer.getFirstName(), testPlayer.getLastName(),
+		this.testPlayer = new Player("Kieran", "Tierney", 22, "Dislocated Shoulder", 3, "Months");
+		this.testPlayerWithID = new Player(testPlayer.getFirstName(), testPlayer.getLastName(),
 				testPlayer.getAge(), testPlayer.getTypeOfInjury(), testPlayer.getLengthOfInjury(),
 				testPlayer.getTimePeriod());
 		this.testPlayerWithID.setId(id);
@@ -72,22 +73,18 @@ public class PlayerServiceUnitTest {
 	@Test
 	public void updatePlayerTest() {
 
-		PlayerDomain newPlayer = new PlayerDomain("Henry", "Allen", 30, "Broken Ankle", 5, "Months");
-		PlayerDomain updatedPlayer = new PlayerDomain(newPlayer.getFirstName(), newPlayer.getLastName(),
-				newPlayer.getAge(), newPlayer.getTypeOfInjury(), newPlayer.getLengthOfInjury(),
-				newPlayer.getTimePeriod());
-		updatedPlayer.setId(this.id);
+		Player newPlayer = new Player("Henry", "Allen", 30, "Broken Ankle", 5, "Months");
+		Player updatedPlayer = new Player(newPlayer.getFirstName(), newPlayer.getLastName(),
+													  newPlayer.getAge(), newPlayer.getTypeOfInjury(), 
+													  newPlayer.getLengthOfInjury(),newPlayer.getTimePeriod());
 		
+		updatedPlayer.setId(this.id);
+
 		when(this.playerRepo.findById(this.id)).thenReturn(Optional.of(this.testPlayerWithID));
 
 		when(this.playerRepo.save(updatedPlayer)).thenReturn(updatedPlayer);
-		System.out.println("This is the value of updatedPlayer " + updatedPlayer);
-		System.out.println("This is the value of id " + this.id);
-		System.out.println(this.playerService.updateMember(updatedPlayer, this.id));
-		assertEquals(updatedPlayer, this.playerService.updateMember(updatedPlayer, this.id));
 
-//		verify(this.playerRepo, times(1)).findById(1L);
-//		verify(this.playerRepo, times(1)).save(updatedPlayer);
+		assertEquals(updatedPlayer, this.playerService.updateMember(updatedPlayer, this.id));
 
 	}
 

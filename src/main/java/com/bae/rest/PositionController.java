@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bae.persistence.domain.PositionDomain;
+import com.bae.persistence.domain.Position;
 import com.bae.service.PositionService;
 
 @RestController
@@ -28,21 +28,21 @@ public class PositionController {
 	}
 
 	@GetMapping("/position")
-	public List<PositionDomain> getAllPositions() {
+	public List<Position> getAllPositions() {
 
 		return positionService.getAllPositions();
 
 	}
 
 	@PostMapping("/position")
-	public PositionDomain addNewPosition(@RequestBody PositionDomain position) {
+	public Position addNewPosition(@RequestBody Position position) {
 
 		return positionService.addNewPosition(position);
 
 	}
 
 	@PutMapping("/position/{id}")
-	public PositionDomain updatePosition(@PathParam("id") long id,@RequestBody PositionDomain position) {
+	public Position updatePosition(@PathParam("id") long id,@RequestBody Position position) {
 		
 		return positionService.updatePosition(id, position);
 		

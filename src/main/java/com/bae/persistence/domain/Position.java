@@ -6,16 +6,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class PositionDomain {
+public class Position {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String position;
 
-	public PositionDomain() {
+	public Position() {
 		super();
 	}
+
+	
+	public Position(String position) {
+		super();
+		this.position = position;
+	}
+
 
 	public Long getId() {
 		return id;

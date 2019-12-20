@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bae.persistence.domain.PlayerDomain;
+import com.bae.persistence.domain.Player;
 import com.bae.persistence.repo.PlayerRepository;
 
 import exceptions.MemberNotFoundException;
@@ -16,43 +16,37 @@ public class PlayerService {
 	private PlayerRepository playerRepo;
 
 	// Constructor
-	@Autowired
 	public PlayerService(PlayerRepository playerRepo) {
 		this.playerRepo = playerRepo;
 	}
 
 	// Creating Members
-	public PlayerDomain addNewMember(PlayerDomain member) {
+	public Player addNewMember(Player member) {
 
 		return playerRepo.save(member);
 
 	}
 
 	// Read Members
-	public List<PlayerDomain> readMembers() {
+	public List<Player> readMembers() {
 		return this.playerRepo.findAll();
 
 	}
 
-	public PlayerDomain findMemberByID(Long id) {
+	public Player findMemberByID(Long id) {
 
 		return this.playerRepo.findById(id).orElseThrow(() -> new MemberNotFoundException());
 	}
 
 	// Update Members
-	public PlayerDomain updateMember( PlayerDomain player, Long id) {
-		System.out.println(id);
-		PlayerDomain toUpdate = findMemberByID(id);
-		System.out.println("2");
-		System.out.println(toUpdate);
+	public Player updateMember(Player player, Long id) {
+		Player toUpdate = findMemberByID(id);
 		toUpdate.setFirstName(player.getFirstName());
 		toUpdate.setLastName(player.getLastName());
 		toUpdate.setAge(player.getAge());
 		toUpdate.setTypeOfInjury(player.getTypeOfInjury());
 		toUpdate.setLengthOfInjury(player.getLengthOfInjury());
 		toUpdate.setTimePeriod(player.getTimePeriod());
-		System.out.println("3");
-		System.out.println(toUpdate);
 		return this.playerRepo.save(toUpdate);
 
 	}
