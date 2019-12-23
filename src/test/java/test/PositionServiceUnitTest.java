@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -45,17 +46,57 @@ public class PositionServiceUnitTest {
 		this.testPositionWithID = new Position(testPosition.getPosition());
 		this.testPositionWithID.setId(id);
 	}
-	
+
 	@Test
 	public void createPosition() {
-		when(this.playerRepo.save(testPlayer)).thenReturn(testPlayerWithID);
+		when(this.positionRepo.save(testPosition)).thenReturn(testPositionWithID);
 
-		assertEquals(this.testPlayerWithID, this.playerService.addNewMember(testPlayer));
+		assertEquals(this.testPositionWithID, this.positionService.addNewPosition(testPosition));
 
-		verify(this.playerRepo, times(1)).save(this.testPlayer);
-		
-		
+		verify(this.positionRepo, times(1)).save(this.testPosition);
+		System.out.println("Done Create");
+	}
+
+	@Test
+	public void readPositionTest() {
+
+		when(positionRepo.findAll()).thenReturn(this.positionList);
+
+		assertFalse("Controller found no Positions", this.positionService.getAllPositions().isEmpty());
+
+		verify(positionRepo, times(1)).findAll();
+		System.out.println("Done Read");
 	}
 	
+	@Test
+	public void updatePlayerTest() {
+		
+		Position newPosition = new Position("LB");
+		Position updatedPosition = new Position(newPosition.getPosition());
+		updatedPosition.setId(this.id);
+	
+		
+		when(this.positionRepo.findById(this.id)).thenReturn(Optional.of(this.testPositionWithID));
+
+		when(this.positionRepo.save(updatedPosition)).thenReturn(updatedPosition);
+
+		assertEquals(updatedPosition, this.positionService.updatePosition(newPosition, this.id));
+
+	}
+	
+	@Test
+	public void deletePlayerTest() {
+
+		when(this.positionRepo.existsById(id)).thenReturn(true, false);
+
+		this.positionService.deletePosition(id);
+		System.out.println("Done Delete");
+		//verify(this.positionRepo, times(1)).deleteById(id);
+		//verify(this.positionRepo, times(2)).existsById(id);
+
+	}
+	
+	
+
 
 }

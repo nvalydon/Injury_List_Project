@@ -29,22 +29,21 @@ public class PositionController {
 
 	@GetMapping("/position")
 	public List<Position> getAllPositions() {
-
 		return positionService.getAllPositions();
 
 	}
 
 	@PostMapping("/position")
 	public Position addNewPosition(@RequestBody Position position) {
-
+		System.out.println("asd w");
 		return positionService.addNewPosition(position);
 
 	}
 
 	@PutMapping("/position/{id}")
-	public Position updatePosition(@PathParam("id") long id,@RequestBody Position position) {
-		
-		return positionService.updatePosition(id, position);
+	public Position updatePosition(@RequestBody Position position, @PathVariable Long id) {
+		System.out.println(id);
+		return this.positionService.updatePosition(position, id);
 		
 	}
 	

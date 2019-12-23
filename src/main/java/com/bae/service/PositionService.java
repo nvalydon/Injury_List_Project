@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.bae.persistence.domain.Position;
 import com.bae.persistence.repo.PositionRepository;
 
+import exceptions.PositionNotFoundException;
+
 @Service
 public class PositionService {
 
@@ -30,12 +32,19 @@ public class PositionService {
 
 	}
 
+	public Position findPositionByID(Long id) {
+
+		return this.positionRepo.findById(id).orElseThrow(() -> new PositionNotFoundException());
+
+	}
+
 // Update Members
 
-	public Position updatePosition( Long id, Position position) {
-		Position toUpdate = this.positionRepo.getOne(id);
+	public Position updatePosition(Position position, Long id) {
+		Position toUpdate = findPositionByID(id);
 		toUpdate.setPosition(position.getPosition());
-		return null;
+		System.out.println(toUpdate);
+		return this.positionRepo.save(toUpdate);
 
 	}
 
