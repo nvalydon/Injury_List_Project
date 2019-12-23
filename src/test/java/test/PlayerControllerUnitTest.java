@@ -26,7 +26,7 @@ public class PlayerControllerUnitTest {
 	@Mock
 	private PlayerService playerService;
 
-	private List<Player> PlayerList;
+	private List<Player> playerList;
 
 	private Player testPlayer;
 
@@ -37,8 +37,8 @@ public class PlayerControllerUnitTest {
 	@Before
 	public void init() {
 
-		this.PlayerList = new ArrayList<>();
-		this.PlayerList.add(testPlayer);
+		this.playerList = new ArrayList<>();
+		this.playerList.add(testPlayer);
 		this.testPlayer = new Player("Kieran", "Tierney", 22, "Dislocated Shoulder", 3, "Months");
 		this.testPlayerWithID = new Player(testPlayer.getFirstName(), testPlayer.getLastName(),
 				testPlayer.getAge(), testPlayer.getTypeOfInjury(), testPlayer.getLengthOfInjury(),
@@ -59,7 +59,7 @@ public class PlayerControllerUnitTest {
 	@Test
 	public void readPlayerTest() {
 
-		when(playerService.readMembers()).thenReturn(this.PlayerList);
+		when(playerService.readMembers()).thenReturn(this.playerList);
 
 		assertFalse("Controller has found no Players", this.playerController.getAllMembers().isEmpty());
 

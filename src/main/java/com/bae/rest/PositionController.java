@@ -19,11 +19,11 @@ import com.bae.service.PositionService;
 @RestController
 @RequestMapping("/position")
 public class PositionController {
-	
+
 	private PositionService positionService;
 
 	public PositionController(PositionService positionService) {
-		
+
 		this.positionService = positionService;
 	}
 
@@ -44,11 +44,17 @@ public class PositionController {
 	public Position updatePosition(@RequestBody Position position, @PathVariable Long id) {
 		System.out.println(id);
 		return this.positionService.updatePosition(position, id);
-		
+
 	}
-	
+
 	@DeleteMapping("/position/{id}")
 	public void deleteUserDetails(@PathVariable Long id) {
 		this.positionService.deletePosition(id);
+	}
+
+	@GetMapping("/get/{id}")
+	public Position getPosition(@PathVariable Long id) {
+		return this.positionService.findPositionByID(id);
+
 	}
 }
