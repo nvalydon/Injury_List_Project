@@ -27,27 +27,27 @@ public class PositionController {
 		this.positionService = positionService;
 	}
 
-	@GetMapping("/position")
+	@GetMapping("/getAll")
 	public List<Position> getAllPositions() {
 		return positionService.getAllPositions();
 
 	}
 
-	@PostMapping("/position")
+	@PostMapping("/create")
 	public Position addNewPosition(@RequestBody Position position) {
 		System.out.println("asd w");
 		return positionService.addNewPosition(position);
 
 	}
 
-	@PutMapping("/position/{id}")
+	@PutMapping("/update/{id}")
 	public Position updatePosition(@RequestBody Position position, @PathVariable Long id) {
 		System.out.println(id);
 		return this.positionService.updatePosition(position, id);
 
 	}
 
-	@DeleteMapping("/position/{id}")
+	@DeleteMapping("/delete/{id}")
 	public void deleteUserDetails(@PathVariable Long id) {
 		this.positionService.deletePosition(id);
 	}

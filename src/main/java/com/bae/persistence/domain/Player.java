@@ -15,7 +15,7 @@ public class Player {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 
 	private String firstName;
 	private String lastName;
@@ -44,11 +44,11 @@ public class Player {
 		this.timePeriod = timePeriod;
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -100,21 +100,13 @@ public class Player {
 		this.timePeriod = timePeriod;
 	}
 
-	public List<Position> getPosition() {
-		return position;
-	}
-
-	public void setPosition(List<Position> position) {
-		this.position = position;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + age;
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + lengthOfInjury;
 		result = prime * result + ((position == null) ? 0 : position.hashCode());
@@ -139,10 +131,7 @@ public class Player {
 				return false;
 		} else if (!firstName.equals(other.firstName))
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		if (lastName == null) {
 			if (other.lastName != null)
@@ -169,6 +158,15 @@ public class Player {
 		return true;
 	}
 
+	/*public List<Position> getPosition() {
+		return position;
+	}
+
+	public void setPosition(List<Position> position) {
+		this.position = position;
+	}*/
+
+	
 	
 	
 

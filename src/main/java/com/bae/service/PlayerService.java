@@ -2,6 +2,7 @@ package com.bae.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bae.persistence.domain.Player;
@@ -14,7 +15,8 @@ public class PlayerService {
 
 	private PlayerRepository playerRepo;
 
-	// Constructor
+	
+	@Autowired
 	public PlayerService(PlayerRepository playerRepo) {
 		this.playerRepo = playerRepo;
 	}
@@ -22,7 +24,7 @@ public class PlayerService {
 	// Creating Members
 	public Player addNewMember(Player member) {
 
-		return playerRepo.save(member);
+		return this.playerRepo.save(member);
 
 	}
 
@@ -34,7 +36,8 @@ public class PlayerService {
 
 	public Player findMemberByID(Long id) {
 
-		return this.playerRepo.findById(id).orElseThrow(() -> new MemberNotFoundException());
+		return this.playerRepo.findById(id).orElseThrow(
+				() -> new MemberNotFoundException());
 	}
 
 	// Update Members
