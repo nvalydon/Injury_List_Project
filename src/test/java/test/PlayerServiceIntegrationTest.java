@@ -34,7 +34,7 @@ public class PlayerServiceIntegrationTest {
 
 	@Before
 	public void init() {
-		this.testPlayer = new Player("Kieran", "Tierney", 22, "Dislocated Shoulder", 4, "Months");
+		this.testPlayer = new Player("Kieran", "Tierney", 22, "Dislocated Shoulder", 3, "Months");
 
 		this.playerRepo.deleteAll();
 
@@ -42,7 +42,7 @@ public class PlayerServiceIntegrationTest {
 
 	}
 
-	/*@Test
+	@Test
 	public void testCreatePlayer() {
 
 		assertEquals(this.testPlayerWithID, this.playerService.addNewMember(testPlayer));
@@ -54,25 +54,35 @@ public class PlayerServiceIntegrationTest {
 
 		assertThat(this.playerService.deleteMember(this.testPlayerWithID.getId())).isFalse();
 
-	}*/
+	}
 
 	@Test
 	public void testFindPlayerByID() {
 		System.out.println(this.testPlayerWithID.getId());
-		
-		assertThat(this.playerService.findMemberByID(this.testPlayerWithID.getId())).isEqualTo(this.testPlayerWithID);
+
+		assertThat(this.playerService.findMemberByID(this.testPlayerWithID.getId()).toString())
+				.isEqualTo(this.testPlayerWithID.toString());
 
 	}
 
-	
-	 /*@Test public void testReadPlayer() {
-	 
-	 assertThat(this.playerService.readMembers()).isEqualTo(Arrays.asList(new Player[] { this.testPlayerWithID }));
-	 
-	 
-	 
-	 
-	 }*/
-	 
+	@Test
+	public void testReadPlayer() {
+
+		assertEquals(this.playerService.readMembers().toString(),
+				((Arrays.asList(new Player[] { this.testPlayerWithID }).toString())));
+
+	}
+
+	@Test
+	public void testUpdatePlayer() {
+		Player newPlayer = new Player("Kieran", "Tierney", 22, "Dislocated Shoulder", 3, "Months");
+		Player updatedPlayer = new Player(newPlayer.getFirstName(), newPlayer.getLastName(), newPlayer.getAge(),
+				newPlayer.getTypeOfInjury(), newPlayer.getLengthOfInjury(), newPlayer.getTimePeriod());
+		updatedPlayer.setId(this.testPlayerWithID.getId());
+
+		assertThat(this.playerService.updateMember(newPlayer, this.testPlayerWithID.getId()).toString())
+				.isEqualTo(updatedPlayer.toString());
+
+	}
 
 }

@@ -158,6 +158,16 @@ public class Player {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Player [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age
+				+ ", typeOfInjury=" + typeOfInjury + ", lengthOfInjury=" + lengthOfInjury + ", timePeriod=" + timePeriod
+				+ "]";
+	}
+	
+
+	
+	
 	/*public List<Position> getPosition() {
 		return position;
 	}
