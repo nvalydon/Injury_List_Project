@@ -43,7 +43,6 @@ public class PositionService {
 	public Position updatePosition(Position position, Long id) {
 		Position toUpdate = findPositionByID(id);
 		toUpdate.setPosition(position.getPosition());
-		System.out.println(toUpdate);
 		return this.positionRepo.save(toUpdate);
 
 	}

@@ -35,7 +35,6 @@ public class PositionController {
 
 	@PostMapping("/create")
 	public Position addNewPosition(@RequestBody Position position) {
-		System.out.println("asd w");
 		return positionService.addNewPosition(position);
 
 	}

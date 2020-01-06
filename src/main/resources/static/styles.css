@@ -1,0 +1,42 @@
+input{
+    width: 20%;
+    border: black;
+    border-style: solid;
+}
+
+input[type=submit] {
+    background-color: #3dcc44;
+  }
+
+input[type=submit] {
+   
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+
+div {
+    border-radius: 5px;
+    background-color:#D3D3D3;
+    padding: 25px;
+
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+table, th {
+  border: solid black;
+}
+
+th {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: whitesmoke;
+}
+  

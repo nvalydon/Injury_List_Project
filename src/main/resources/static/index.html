@@ -1,0 +1,50 @@
+<html>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+    <body>
+      <div class="topnav">
+        <a class="active" href="index.html">Add a Player</a>
+        <a href="Table.html">Injury Table</a>
+
+      </div> 
+        <link rel="stylesheet" href="styles.css">
+        <h1>Add Player Information</h1>
+
+        
+    <div>
+        
+        <form >
+          First Name:<br>
+          <input type="text" name="firstname" id="firstName" placeholder="First Name of Player" required>
+          <br>
+          Last Name:<br>
+          <input type="text" name="lastname" id="lastName" placeholder="Last Name of Player" required>
+          <br>
+          Age:<br>
+          <input type="number" name="age" id="age" min="1" max="120" placeholder="Age of Player" required>
+          <br>
+          Position:<br>
+          <input type="text" name="position" id="position" placeholder="Position, for multiple use / to seperate them" required>
+          <br>
+          Description of Injury:<br>
+          <input type="text" name="typeOfInjury" id="typeOfInjury" placeholder="Description of Injury" required>
+          <br>
+          Length of Injury:<br>
+          <input type="number" name="lengthOfInjury" id="lengthOfInjury" placeholder="Length of Injury" required>
+          <select id="timePeriod" name="timePeriod" id="timePeriod">
+            <option value="days">Days</option>
+            <option value="weeks">Weeks</option>
+            <option value="months">Months</option>
+          </select>
+          <br>
+
+          <br>
+          <input type="button" value="Submit" onclick="sendPositionData()">
+        </form> 
+ 
+    </div>
+        </body>
+        <script src="index.js"></script> 
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</html> 
