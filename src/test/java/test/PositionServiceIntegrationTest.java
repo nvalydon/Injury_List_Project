@@ -13,7 +13,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.bae.App;
-import com.bae.persistence.domain.Player;
 import com.bae.persistence.domain.Position;
 import com.bae.persistence.repo.PositionRepository;
 import com.bae.service.PositionService;
@@ -51,13 +50,13 @@ public class PositionServiceIntegrationTest {
 
 	}
 
-	@Test
-	public void testDeletePlayer() {
-
-		assertThat(this.positionService.deletePosition(this.testPositionWithID.getId())).isFalse();
-
-	}
-	
+//	@Test
+//	public void testDeletePlayer() {
+//
+//		assertThat(this.positionService.deletePosition(this.testPositionWithID.getId())).isFalse();
+//
+//	}
+//	
 	@Test
 	public void testReadPosition() {
 
