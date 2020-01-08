@@ -2,13 +2,11 @@ package com.bae.persistence.domain;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Player {
@@ -24,9 +22,8 @@ public class Player {
 	private int lengthOfInjury;
 	private String timePeriod;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "player_id")
-	private List<Position> position;
+	@ManyToMany
+	private List<Position> positions;
 	
 
 	public Player() {
@@ -109,7 +106,7 @@ public class Player {
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + lengthOfInjury;
-		result = prime * result + ((position == null) ? 0 : position.hashCode());
+		result = prime * result + ((positions == null) ? 0 : positions.hashCode());
 		result = prime * result + ((timePeriod == null) ? 0 : timePeriod.hashCode());
 		result = prime * result + ((typeOfInjury == null) ? 0 : typeOfInjury.hashCode());
 		return result;
@@ -140,10 +137,10 @@ public class Player {
 			return false;
 		if (lengthOfInjury != other.lengthOfInjury)
 			return false;
-		if (position == null) {
-			if (other.position != null)
+		if (positions == null) {
+			if (other.positions != null)
 				return false;
-		} else if (!position.equals(other.position))
+		} else if (!positions.equals(other.positions))
 			return false;
 		if (timePeriod == null) {
 			if (other.timePeriod != null)

@@ -1,9 +1,12 @@
 package com.bae.persistence.domain;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Position {
@@ -12,6 +15,11 @@ public class Position {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String position;
+	
+	@ManyToMany(mappedBy = "positions")
+	private Set<Player> players;
+	
+	
 
 	public Position() {
 		super();

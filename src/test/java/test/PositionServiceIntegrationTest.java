@@ -51,12 +51,12 @@ public class PositionServiceIntegrationTest {
 
 	}
 
-	@Test
-	public void testDeletePlayer() {
-
-		assertThat(this.positionService.deletePosition(this.testPositionWithID.getId())).isFalse();
-
-	}
+//	@Test
+//	public void testDeletePlayer() {
+//
+//		assertThat(this.positionService.deletePosition(this.testPositionWithID.getId())).isFalse();
+//
+//	}
 	
 	@Test
 	public void testReadPosition() {
