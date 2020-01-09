@@ -21,17 +21,24 @@ public class Player {
 	private String typeOfInjury;
 	private int lengthOfInjury;
 	private String timePeriod;
-	
+
 	@ManyToMany
 	private List<Position> positions;
-	
+
+	public List<Position> getPositions() {
+		return positions;
+	}
+
+	public void setPositions(List<Position> positions) {
+		this.positions = positions;
+	}
 
 	public Player() {
-		
 
 	}
 
-	public Player(String firstName, String lastName, int age, String typeOfInjury, int lengthOfInjury, String timePeriod) {
+	public Player(String firstName, String lastName, int age, String typeOfInjury, int lengthOfInjury,
+			String timePeriod) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -161,21 +168,7 @@ public class Player {
 				+ ", typeOfInjury=" + typeOfInjury + ", lengthOfInjury=" + lengthOfInjury + ", timePeriod=" + timePeriod
 				+ "]";
 	}
-	
 
-	
-	
-	/*public List<Position> getPosition() {
-		return position;
-	}
-
-	public void setPosition(List<Position> position) {
-		this.position = position;
-	}*/
-
-	
-	
-	
 
 
 }
