@@ -267,13 +267,19 @@ function addDataToTable(dataToAdd){
         ageEntry.innerHTML = playerData.age;
         row.appendChild(ageEntry);
 
-        // let positionEntry = document.createElement("td");
-        // for(let i = 0; i< playerData.positions.length; i++ ){
+        let positionEntry = document.createElement("td");      
+        let result = '';
+        for(let i = 0; i < playerData.positions.length; i++ ){
 
-        //     playerData.positions.split(",",3);
-        //     positionEntry.innerHTML = playerData.positions + "/"
-        // }
-        // row.append(positionEntry);
+            let a = playerData.positions;
+            let b = a[i];
+            
+            result += b.position + ",";
+            
+            
+        }
+        positionEntry.innerHTML = result;
+        row.append(positionEntry);
 
         let typeOfInjuryEntry = document.createElement("td");
         typeOfInjuryEntry.innerHTML = playerData.typeOfInjury;
