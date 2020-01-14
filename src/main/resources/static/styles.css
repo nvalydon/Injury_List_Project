@@ -35,7 +35,7 @@ div {
     border-collapse: collapse;
   }
 
-table, th {
+table, th, tr {
   border: 1.5px solid black;
 }
 

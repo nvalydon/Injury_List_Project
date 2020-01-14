@@ -7,10 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Injury Table</title>
 </head>
-<body>
+<body onload="getPlayerData()">
     <div class="topnav">
         <a href="index.html">Home</a>
-        <a class="active" href="Table.html" onclick="getPlayerData()">Injury Table</a>
+        <a class="active" href="Table.html" onload="getPlayerData()">Injury Table</a>
     </div>
     <h1 class="addHeader">Injury Table</h1>
     <div>
@@ -24,7 +24,10 @@
         <th>Position(s)</th>
         <th>Description of Injury</th>
         <th>Length of Injury</th>
+        <th>Rough Return Date</th>
+        
     </tr>
+    
 </thead>
 <tbody id="playerTable">
 
@@ -33,7 +36,8 @@
 
 </tbody>
 </table>
-</div>
+
+</div> 
 </body>
 <script src="index.js"></script> 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

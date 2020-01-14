@@ -234,6 +234,7 @@ function validateForm(){
 
 }
 
+
 function getPlayerData(){
 
     pData = axios.get('http://localhost:8080/player/getAll')
@@ -250,6 +251,14 @@ function getPlayerData(){
 
  });
 }
+
+const date = new Date();
+function addDays(date, days) {
+    const copy = new Date(Number(date))
+    copy.setDate(date.getDate() + days)
+    return copy
+}
+
 const table = document.getElementById("playerTable");
 function addDataToTable(dataToAdd){
     for(let playerData of dataToAdd){
@@ -286,31 +295,51 @@ function addDataToTable(dataToAdd){
         row.append(typeOfInjuryEntry);
 
         let lengthOfInjuryEntry = document.createElement("td");
-        lengthOfInjuryEntry.innerHTML = playerData.lengthOfInjury + " " +playerData.timePeriod;
+        lengthOfInjuryEntry.innerHTML = playerData.lengthOfInjury + " " + playerData.timePeriod;
         row.append(lengthOfInjuryEntry);
 
+        let roughReturnDateEntry = document.createElement("td");
+        if( playerData.timePeriod == "Days"){
+            
+            let newDate = addDays(date, playerData.lengthOfInjury);
+            roughReturnDateEntry.innerHTML = newDate;
+            row.append(roughReturnDateEntry);
+
+        
+          }else if(playerData.timePeriod == "Weeks"){
+            
+            let weekToDay = playerData.lengthOfInjury * 7;    
+            let newDate = addDays(date, weekToDay);
+            roughReturnDateEntry.innerHTML = newDate;
+            row.append(roughReturnDateEntry);
+            
+        
+        
+          }else if(playerData.timePeriod == "Months"){
+            
+            let monthToDay = playerData.lengthOfInjury * 28;
+            let newDate = addDays(date, monthToDay);
+            roughReturnDateEntry.innerHTML = newDate;
+            row.append(roughReturnDateEntry);
+        
+          }
+       
+        
+
         table.appendChild(row);
-        
+          
 
-
-
-
-
-        
     }
 
 
 
 
 
-
-
-
-
-
-
-
 }
+
+
+ 
+ 
 
 
 
