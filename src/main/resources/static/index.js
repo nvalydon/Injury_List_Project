@@ -264,6 +264,7 @@ function addDataToTable(dataToAdd){
     for(let playerData of dataToAdd){
 
         let row = document.createElement("tr");
+
         let firstNameEntry = document.createElement("td")
         firstNameEntry.innerHTML = playerData.firstName;
         row.appendChild(firstNameEntry);
@@ -324,7 +325,27 @@ function addDataToTable(dataToAdd){
         
           }
        
+        // let deleteData =  document.createElement("td");
+        // let deleteButton = document.createElement("button");
+        // deleteButton.innerHTML = "Delete";
+        // deleteData.innerHTML = deleteButton;
+        // row.append(deleteData);
+
+        // let typeOfInjuryEntry = document.createElement("td");
+        // typeOfInjuryEntry.innerHTML = playerData.typeOfInjury;
+        // row.append(typeOfInjuryEntry);
+
+        let deleteCol = document.createElement("td");
+        let deleteButton = document.createElement("button")
+        let text = document.createTextNode("Delete")
+        deleteButton.appendChild(text)
+        //deleteButton.innerHTML = "Delete"
+        deleteCol.innerHTML = deleteButton;
+        row.append(deleteCol);
         
+
+
+
 
         table.appendChild(row);
           
@@ -337,7 +358,14 @@ function addDataToTable(dataToAdd){
 
 }
 
+function deletePlayer(){
 
+    axios.delete('http://localhost:8080/player/delete/', )
+
+
+
+
+}
  
  
 
