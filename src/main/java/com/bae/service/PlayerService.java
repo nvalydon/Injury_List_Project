@@ -49,6 +49,7 @@ public class PlayerService {
 		toUpdate.setTypeOfInjury(player.getTypeOfInjury());
 		toUpdate.setLengthOfInjury(player.getLengthOfInjury());
 		toUpdate.setTimePeriod(player.getTimePeriod());
+		toUpdate.setPositions(player.getPositions());
 		return this.playerRepo.save(toUpdate);
 
 	}
