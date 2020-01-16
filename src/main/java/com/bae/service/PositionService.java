@@ -48,9 +48,10 @@ public class PositionService {
 	}
 
 // Deleting User
-	public void deletePosition(long id) {
+	public boolean deletePosition(Long id) {
 
 		this.positionRepo.deleteById(id);
+		return this.positionRepo.existsById(id);
 	}
 
 }

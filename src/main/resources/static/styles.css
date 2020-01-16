@@ -1,41 +1,43 @@
-input{
-    width: 15%;
-    border: 1px black;
-    border-style: solid;
+input {
+  width: 15%;
+  border: 1px black;
+  border-style: solid;
 }
 
 
 input[type=button] {
-   
-    background-color:#2C6700;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border-radius: 4px;
-    cursor: pointer;
-  }
 
-input[type=checkbox]{
+  background-color: #2C6700;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=checkbox] {
 
   margin: 5px 0px 0px 0px;
   width: 25px;
   position: relative;
 
-}  
-  
+}
+
 
 div {
-    border-radius: 5px;
-    background-color:#E5E4D7;
-    padding: 25px;
+  border-radius: 5px;
+  background-color: #E5E4D7;
+  padding: 25px;
 
-  }
+}
 
-  table {
-    border-collapse: collapse;
-  }
+table {
+  border-collapse: collapse;
+}
 
-table, th, tr {
+table,
+th,
+tr {
   border: 1.5px solid black;
 }
 
@@ -43,7 +45,7 @@ th {
   padding: 10px;
   background-color: #4CAF50;
   color: whitesmoke;
-  
+
 }
 
 
@@ -74,7 +76,7 @@ th {
 .topnav a.active {
   background-color: #4CAF50;
   color: white;
-  
+
 }
 
 body {
@@ -84,4 +86,3 @@ body {
 h1 {
   align-content: center;
 }
-
