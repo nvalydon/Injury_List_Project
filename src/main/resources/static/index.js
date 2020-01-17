@@ -58,7 +58,7 @@ function sendPlayerData(){
         };
         
         JSON.stringify(playerInfo);
-        axios.post('http://localhost:8080/player/create', playerInfo)
+        axios.post('/InjuryApp/player/create', playerInfo)
         .then(function (response){ 
 
             console.log(response);
@@ -264,7 +264,7 @@ function validateForm(){
 
 function getPlayerData(){
 
-    pData = axios.get('http://localhost:8080/player/getAll')
+    pData = axios.get('/InjuryApp/player/getAll')
     .then(function (response){ 
 
         console.log(response);
@@ -289,7 +289,7 @@ function addDays(date, days) {
 
 function deletePlayer(id){
 
-    axios.delete('http://localhost:8080/player/delete/' + id)
+    axios.delete('/InjuryApp/player/delete/' + id)
     .then(function (response){ 
 
         console.log(response);
@@ -524,7 +524,7 @@ function updatePlayer(id){
     };
 
     JSON.stringify(playerInfo);
-        axios.put('http://localhost:8080/player/update/' + id, playerInfo)
+        axios.put('/InjuryApp/player/update/' + id, playerInfo)
         .then(function (response){ 
 
             console.log(response);
