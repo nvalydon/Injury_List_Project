@@ -86,3 +86,37 @@ body {
 h1 {
   align-content: center;
 }
+
+.firstNameEdit{
+
+width:fit-content;
+
+
+}
+
+.lastNameEdit{
+
+width: fit-content;
+
+}
+
+.ageEdit{
+  width: fit-content ;
+}
+
+.descriptionEdit{
+  width: fit-content ;
+
+}
+
+.LOIEdit{
+
+  width: fit-content;
+}
+
+.TPEdit{
+
+font-size: 4px;
+
+}
+

@@ -44,9 +44,6 @@ function sendPlayerData(){
         }
    
 
-    console.log(arr)
-
-   
     let playerInfo = {
 
             firstName: document.getElementById('firstName').value,
@@ -357,11 +354,9 @@ function addDataToTable(dataToAdd){
         let lengthOfInjuryEntry = document.createElement("td");
         lengthOfInjuryEntry.id = "lengthOfInjuryCell" + playerNum;
 
-        //let timePeriodEntry = document.createElement("td").disabled
-        // let TP = playerData.timePeriod
-        // TP.id = "timePeriod" + playerNum;
-        // console.log([playerData.timePeriod.id])
+        
         lengthOfInjuryEntry.innerHTML = playerData.lengthOfInjury + " " + playerData.timePeriod;
+        //lengthOfInjuryEntry.innerHTML = playerData.timePeriod.disabled
         row.append(lengthOfInjuryEntry);
 
         let roughReturnDateEntry = document.createElement("td");
@@ -394,15 +389,27 @@ function addDataToTable(dataToAdd){
         
           }
        
-          let updateCol = document.createElement("td");
-          let updateButton = "Click Here  ";
-          updateCol.innerHTML = updateButton;
-          row.append(updateCol);
-          updateCol.addEventListener('click', ()=> {let result = confirm("Do you Want to Update this player?")
-          if(result){editRow(playerData.id)
+         
+
+          let updateButton = document.createElement("button");       
+          updateButton.id = "updateButton" + playerNum;
+          updateButton.innerHTML = "Update";
+          updateButton.addEventListener('click', ()=> {let result = confirm("Do you Want to Update this player?");
+          if(result){
+            updateButton.hidden = true;  
+            editRow(playerData.id)
+            confirmButton.hidden =false; 
                          
           }});
+
+        row.append(updateButton);
         
+          let confirmButton = document.createElement("button");
+          confirmButton.innerHTML= "Confirm"
+          confirmButton.hidden = true;
+          confirmButton.addEventListener('click', ()=> updatePlayer(playerData.id) & document.location.reload())
+          row.append(confirmButton);
+
 
         let deleteCol = document.createElement("td");
         let deleteButton = "&#128465";
@@ -418,48 +425,118 @@ function addDataToTable(dataToAdd){
 
     }
 
+    
 }
+
+
+
 
 function editRow(id){
     
-    //console.log(pData)
-    let table = document.getElementById("playerTable")
-
     let firstNameUpdate = document.getElementById("firstNameCell" + id)
     let firstNameVal = firstNameUpdate.innerHTML;
-
-    firstNameUpdate.innerHTML ="<input type=text value='"+firstNameVal+"'>";
+    firstNameUpdate.innerHTML ="<input id=firstNameEdit class=firstNameEdit type=text value='"+firstNameVal+"'>";
 
     let lastNameUpdate = document.getElementById("lastNameCell" + id)
     let lastNameVal = lastNameUpdate.innerHTML;
-
-    lastNameUpdate.innerHTML = "<input type=text value='"+lastNameVal+"'>";
+    lastNameUpdate.innerHTML = "<input id=lastNameEdit class=lastNameEdit type=text value='"+lastNameVal+"'>";
 
     let ageUpdate = document.getElementById("ageCell" + id)
     let ageVal = ageUpdate.innerHTML;
+    ageUpdate.innerHTML = "<input id=ageEdit class=ageEdit type=number min=1 max=120 value='"+ageVal+"'>";
 
-    ageUpdate.innerHTML = "<input type=number value='"+ageVal+"'>";
+    let positionUpdate = document.getElementById("positionCell" + id)
+    let positionVal = positionUpdate.innerHTML;
 
-    // let positionUpdate = document.getElementById("positionCell" + id)
-    // let positionVal = positionUpdate.innerHTML;
-
-    //console.log("positionCell" + id)
-
-    //positionUpdate.innerHTML = "<input type=checkbox value="+positionVal+"'>"
-
+    positionUpdate.innerHTML = "<input class=posnEdit type=checkbox value=1>CF" + "<input class=posnEdit type=checkbox value=2 >ST" + "<input class=posnEdit type=checkbox value=3>RW" + "<input class=posnEdit type=checkbox value=4>LW" + "</br>" +
+                               "<input class=posnEdit type=checkbox value=5>RM" + "<input class=posnEdit type=checkbox value=6 >LM" + "<input class=posnEdit type=checkbox value=7>CM" + "<input class=posnEdit type=checkbox value=8>CAM" + "<input class=posnEdit type=checkbox value=9>CDM" + "</br>" +
+                               "<input class=posnEdit type=checkbox value=10>CB" + "<input class=posnEdit type=checkbox value=11 >LB" + "<input class=posnEdit type=checkbox value=12>RB" + "<input class=posnEdit type=checkbox value=13>LWB" + "<input class=posnEdit type=checkbox value=14>RWB" + "</br>" + 
+                               "<input class=posnEdit type=checkbox value=15>GK"
+    
+    
+    
     let lengthOfInjuryUpdate = document.getElementById("lengthOfInjuryCell" + id)
-    let lengthOfInjuryVal = lengthOfInjuryUpdate.innerHTML;
+    let lengthOfInjuryVal = lengthOfInjuryUpdate.innerHTML
+    let LOIArray = lengthOfInjuryVal.split(' ');
+    let LOINum = LOIArray[0]
+    
 
-    lengthOfInjuryUpdate.innerHTML = "<input type=number value='"+lengthOfInjuryVal+"'>"
+        lengthOfInjuryUpdate.innerHTML = "<input id=LOIEdit class=LOIEdit type=number value='"+LOINum+"'>" + "<br/>"
+                                        + '<input id=days   class=TPEdit type="radio" name="TP" value="' + "Days" + '">Days' 
+                                        + '<input id=weeks  class=TPEdit type="radio" name="TP" value="' + "Weeks" + '"> Weeks' 
+                                        + '<input id=months class=TPEdit type="radio" name="TP" value="' + "Months" + '"> Months';
+    
 
 
 
     let descOfInjuryUpdate = document.getElementById("typeOfInjuryCell" + id)
     let descOfInjuryVal = descOfInjuryUpdate.innerHTML;
 
-    descOfInjuryUpdate.innerHTML = "<input type=text value='"+descOfInjuryVal+"'>";
+    descOfInjuryUpdate.innerHTML = "<input id=DOI class=descriptionEdit type=text value='"+descOfInjuryVal+"'>";
+}
+
+function updatePlayer(id){
+
+    let checks = document.getElementsByClassName('posnEdit');
+    arr = [];
+    let str = '';
+    for ( i = 0; i < 15; i++) {
+        if ( checks[i].checked === true ) {
+
+            str = checks[i].value;
+            str = parseInt(str,10);
+            let position_data =     
+            {
+                id: str
+            }
+        
+        arr.push(position_data);    
+        }
+                        
+    }
+
+    let checkedValue
+    if(document.getElementById("days").checked){
+         checkedValue = document.getElementById("days").value 
+        
+    }else if(document.getElementById("weeks").checked){
+         checkedValue = document.getElementById("weeks").value 
+        
+    }else if(document.getElementById("months").checked){
+         checkedValue = document.getElementById("months").value 
+        
+    }
 
 
 
+
+    let playerInfo = {
+
+        firstName: document.getElementById('firstNameEdit').value,
+        lastName: document.getElementById('lastNameEdit').value,
+        age: document.getElementById('ageEdit').value,
+        typeOfInjury: document.getElementById('DOI').value,
+        lengthOfInjury: document.getElementById('LOIEdit').value,
+        timePeriod: checkedValue,
+        positions: arr
+                
+
+    };
+
+    JSON.stringify(playerInfo);
+        axios.put('http://localhost:8080/player/update/' + id, playerInfo)
+        .then(function (response){ 
+
+            console.log(response);
+        
+        })
+        .catch(function (error){
+    
+            console.log(error);
+
+
+     })
+
+     
 }
 
