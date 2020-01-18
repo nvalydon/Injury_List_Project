@@ -3,10 +3,12 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <body>
+
     <div class="topNav">
       <a class="active" href="index.html">Home</a>
       <a href="Table.html">Injury Table</a>
     </div>
+
 
     <link rel="stylesheet" href="styles.css">
     <h1 class="addHeader">Add Player Information</h1>
@@ -25,7 +27,7 @@
         <input type="number" name="age" id="age" min="1" max="120" placeholder="Age of Player" required>
         <br><br>
 
-        Position(s): Please check up to 3<br>
+        Position(s): <br>
 
         Attack:
         <input type="checkbox" class="posn" value="1">CF
@@ -59,7 +61,6 @@
         Length of Injury:<br>
         <input type="number" name="lengthOfInjury" id="lengthOfInjury" min="1" placeholder="Length of Injury" required>
         <select id="timePeriod" name="timePeriod">
-          <option value="Choose a Time Period">How Long?</option>
           <option value="Days">Days</option>
           <option value="Weeks">Weeks</option>
           <option value="Months">Months</option>
@@ -67,7 +68,7 @@
         <br>
 
         <br>
-        <input type="button" value="Submit" onclick="validateForm();sendPlayerData();this.form.reset()">
+        <input type="button" value="Submit" onclick="sendPlayerData();this.form.reset();">
       </form>
 
     </div>

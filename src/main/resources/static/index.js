@@ -1,32 +1,6 @@
-function getValue() {
-    let checks = document.getElementsByClassName('posn');
-    arr = [];
-    let posn_id = {};
-    let str = '';
-    for ( i = 0; i < 15; i++) {
-        if ( checks[i].checked === true ) {
-
-            str = checks[i].value;
-            str = parseInt(str,10);
-            let position_data =     
-            {
-                id: str
-            }
-        
-        arr.push(position_data);    
-        }
-                        
-        }
-   
-
-    console.log(arr)
-}
-
-
 function sendPlayerData(){
     let checks = document.getElementsByClassName('posn');
     arr = [];
-    let posn_id = {};
     let str = '';
     for ( i = 0; i < 15; i++) {
         if ( checks[i].checked === true ) {
@@ -58,9 +32,14 @@ function sendPlayerData(){
         };
         
         JSON.stringify(playerInfo);
-        axios.post('http://localhost:8080/player/create', playerInfo)
-        .then(function (response){ 
+        
+              
+         if(validateForm() != false){   
 
+        axios.post('http://localhost:8080/player/create', playerInfo)
+        .then(function (response){
+            
+            console.log('data posted!')
             console.log(response);
         
         })
@@ -72,44 +51,17 @@ function sendPlayerData(){
      })
      
     }     
-
-// function sendPositionData(){
-//     let checks = document.getElementsByClassName('posn');
-//     let str = '';
-//     for ( i = 0; i < 15; i++) {
-//         if ( checks[i].checked === true ) {
-//             str += checks[i].value + " ";
-//         }
-//     }
-
-//     let positionInfo = {
-//         position: str
-//     };
-//     JSON.stringify(positionInfo);
-//     axios.post('http://localhost:8080/position/create',positionInfo)
-//     .then(function (response){ 
-
-//         console.log(response);
-    
-//     })
-//     .catch(function (error){
-
-//         console.log(error);
-
-
-//  })
- 
-// }
+}
 
 function validateForm(){
     let hasNumber = /\d/;
     let fn = document.playerInputData.firstName.value;
     let ln = document.playerInputData.lastName.value;
     let age = document.playerInputData.age.value;
-    // let posn = document.playerInputData.position.value;
     let DoI = document.playerInputData.typeOfInjury.value;
     let LoI = document.playerInputData.lengthOfInjury.value;
-    let TP = document.playerInputData.timePeriod.value;
+    
+    
     
     //First Name Validation
     if(fn == "") {
@@ -118,7 +70,7 @@ function validateForm(){
         document.getElementById('firstName').style.backgroundColor = "#f54c4c";
         return false;
     }
-    if( hasNumber.test(fn)) {
+    if(hasNumber.test(fn)) {
          alert( "Error - Name Cannot Contain Numbers" );
          document.playerInputData.firstName.focus() ;
          document.getElementById('firstName').style.backgroundColor = "#f54c4c";
@@ -136,14 +88,7 @@ function validateForm(){
         document.getElementById('firstName').style.backgroundColor = "#f54c4c";
         return false;
     }
-    // if(fn){
-    //     alert( "Name cannot contain Special Characters" );
-    //     document.playerInputData.firstName.focus();
-    //     document.getElementById('firstName').style.backgroundColor = "#f54c4c";
-    //     return false;
-    // }
-
-
+  
     //Last Name Validations
      if(  ln == "" ) {
         alert( "Please Enter a Last Name" );
@@ -184,8 +129,8 @@ function validateForm(){
         return false;
     }
 
-   
-     //Description of Injury Validation
+  
+    //Description of Injury Validation
      if(DoI == "") {
         alert( "Please Enter a Description of the Injury" );
         document.playerInputData.typeOfInjury.focus();
@@ -220,47 +165,134 @@ function validateForm(){
         document.getElementById('lengthOfInjury').style.backgroundColor = "#f54c4c";
         return false;
     }
-    if(TP == "Choose a Time Period"){
-        alert( "How long will the player be out for?" );
-        document.playerInputData.timePeriod.focus();
+   
+    
+}
+
+function validateFormEdit(){
+    let hasNumber = /\d/;
+    let fn = document.getElementById("firstNameEdit").value;
+    let ln = document.getElementById("lastNameEdit").value;
+    let age = document.getElementById("ageEdit").value;
+    let LoI = document.getElementById("LOIEdit").value;
+    let DoI = document.getElementById("DOI").value;
+    
+    
+    
+    //First Name Validation
+    if(fn == "") {
+        alert( "Please Enter a First Name" );
+        document.playerInputData.firstName.focus();
+        document.getElementById('firstName').style.backgroundColor = "#f54c4c";
+        return false;
+    }
+    if(hasNumber.test(fn)) {
+         alert( "Error - Name Cannot Contain Numbers" );
+         document.playerInputData.firstName.focus() ;
+         document.getElementById('firstName').style.backgroundColor = "#f54c4c";
+         return false;
+    }
+    if( fn.length < 2 ) {
+        alert( "First Name Too Short" );
+        document.playerInputData.firstName.focus();
+        document.getElementById('firstName').style.backgroundColor = "#f54c4c";
+        return false;
+    }
+    if( fn.length > 200 ) {
+        alert( "First Name Too Long" );
+        document.playerInputData.firstName.focus();
+        document.getElementById('firstName').style.backgroundColor = "#f54c4c";
+        return false;
+    }
+  
+    //Last Name Validations
+     if(  ln == "" ) {
+        alert( "Please Enter a Last Name" );
+        document.playerInputData.lastName.focus();
+        document.getElementById('lastName').style.backgroundColor = "#f54c4c";
+        return false;
+    }
+    if( hasNumber.test(ln)) {
+         alert( "Error - Last Name cannot contain numbers" );
+         document.playerInputData.lastName.focus() ;
+         document.getElementById('lastName').style.backgroundColor = "#f54c4c";
+         return false;
+    }
+     if( ln.length < 2 ) {
+        alert( "Last Name Too Short" );
+        document.playerInputData.lastName.focus();
+        document.getElementById('lastName').style.backgroundColor = "#f54c4c";
+        return false;
+    }
+     if( ln.length > 200 ) {
+        alert( "Last Name Too Long" );
+        document.playerInputData.lastName.focus();
+        document.getElementById('lastName').style.backgroundColor = "#f54c4c";
         return false;
     }
     
- 
+    //Age Validations
+    if(age == "" ) {
+        alert( "Please Enter an Age" );
+        document.playerInputData.age.focus();
+        document.getElementById('age').style.backgroundColor = "#f54c4c";
+        return false;
+    }
+    if(age < 1 || age > 120){
+        alert( "Age Must be Greater than 1 and less than 120" );
+        document.playerInputData.age.focus();
+        document.getElementById('age').style.backgroundColor = "#f54c4c";
+        return false;
+    }
+
+    //Description of Injury Validation
+     if(DoI == "") {
+        alert( "Please Enter a Description of the Injury" );
+        document.playerInputData.typeOfInjury.focus();
+        document.getElementById('typeOfInjury').style.backgroundColor = "#f54c4c";
+        return false;
+    }
+
+     if( hasNumber.test(DoI)) {
+        alert( "Error - Description cannot contain numbers" );
+        document.playerInputData.typeOfInjury.focus();
+        document.getElementById('typeOfInjury').style.backgroundColor = "#f54c4c";
+        return false;
+    }
+
+    if(DoI.length ==1 || DoI.length >= 150 ){
+        alert( "Error - Description must be between 1 and 150 Characters" );
+        document.playerInputData.typeOfInjury.focus();
+        document.getElementById('typeOfInjury').style.backgroundColor = "#f54c4c";
+        return false;
+    }
+
+    //Length Of Injury Validation
+    if(LoI == "" ) {
+        alert( "Please Enter a Length Of Injury" );
+        document.playerInputData.lengthOfInjury.focus();
+        document.getElementById('lengthOfInjury').style.backgroundColor = "#f54c4c";
+        return false;
+    }
+    if(LoI < 1){
+        alert( "Length of Injury Must be Greater than 1" );
+        document.playerInputData.lengthOfInjury.focus();
+        document.getElementById('lengthOfInjury').style.backgroundColor = "#f54c4c";
+        return false;
+    }
+    //Time Period Validation
+    let daySelected = document.getElementById('days').checked
+    let weekSelected = document.getElementById('weeks').checked
+    let monthSelected = document.getElementById('months').checked
+
+    if(!daySelected && !weekSelected && !monthSelected ) { 
+        alert("Please Select a time Period")    
+        
+        return false
+    }
 
 
 }
-
-// function getPlayerDataForUpdate(id){
-
-//      let pData = axios.get('http://localhost:8080/player/get/' + id)
-//     .then(function(response){ 
-//                         document.getElementById("firstName").innerHTML = pData.firstName;
-//         console.log(response);
-        
-//     })
-//     .catch(function (error){
-
-//         console.log(error);
-
-//  });
-// }
-
-// function playerToBeupdated(){
-// console.log("test")
-// // for(key in pData){
-// //             if(pData.hasOwnProperty(key))
-// //             console.log(key)
-// //             $('input[name='+key+']'.valueOf(pData[key]))
-// //         }
-
-// // document.getElementById("firstName").innerHTML = 
-
-
-
-//}
-
-
 
 function getPlayerData(){
 
@@ -281,11 +313,27 @@ function getPlayerData(){
 
 const date = new Date();
 function addDays(date, days) {
+
     const copy = new Date(Number(date))
     copy.setDate(date.getDate() + days)
-    return copy
-}
+    let dd = copy.getDate();
+    let mm = copy.getMonth() + 1;
+    let yyyy = copy.getFullYear();
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December"];
 
+    let monthToString = monthNames[copy.getMonth()]
+
+    if (dd < 10) {
+    dd = '0' + dd;
+    } 
+    if (mm < 10) {
+    mm = '0' + mm;
+    } 
+    let newDate = dd + '  ' + monthToString + '  ' + yyyy;
+
+    return newDate 
+}
 
 function deletePlayer(id){
 
@@ -307,7 +355,6 @@ function deletePlayer(id){
 
 
 }
-
 
 let table = document.getElementById("playerTable");
 function addDataToTable(dataToAdd){
@@ -428,9 +475,6 @@ function addDataToTable(dataToAdd){
     
 }
 
-
-
-
 function editRow(id){
     
     let firstNameUpdate = document.getElementById("firstNameCell" + id)
@@ -461,7 +505,7 @@ function editRow(id){
     let LOINum = LOIArray[0]
     
 
-        lengthOfInjuryUpdate.innerHTML = "<input id=LOIEdit class=LOIEdit type=number value='"+LOINum+"'>" + "<br/>"
+        lengthOfInjuryUpdate.innerHTML = "<input id=LOIEdit class=LOIEdit type=number min=1 value='"+LOINum+"'>" + "<br/>"
                                         + '<input id=days   class=TPEdit type="radio" name="TP" value="' + "Days" + '">Days' 
                                         + '<input id=weeks  class=TPEdit type="radio" name="TP" value="' + "Weeks" + '"> Weeks' 
                                         + '<input id=months class=TPEdit type="radio" name="TP" value="' + "Months" + '"> Months';
@@ -523,7 +567,12 @@ function updatePlayer(id){
 
     };
 
+
+
     JSON.stringify(playerInfo);
+
+    if(validateFormEdit() != false){
+
         axios.put('http://localhost:8080/player/update/' + id, playerInfo)
         .then(function (response){ 
 
@@ -538,5 +587,9 @@ function updatePlayer(id){
      })
 
      
-}
+}else{
 
+    alert("Update Unsuccessful")
+
+}
+}
