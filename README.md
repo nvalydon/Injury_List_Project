@@ -2,7 +2,7 @@
 
 ## Features:
 - Offers a way for managers or physios for a team to keep track of player injuries
-- The app will take in some Player data and return that information back into a table as well as calculate the rough return date for the player
+- The app will take in some player data and return that information back into a table as well as calculate the rough return date for the player
 - Full Stack application with CRUD functionality
 
 ## Contents:
