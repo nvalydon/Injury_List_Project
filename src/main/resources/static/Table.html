@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <link rel="stylesheet" href="styles.css">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Injury Table</title>
+  </head>
+
+  <body onload="getPlayerData()">
+    <div class="topnav">
+      <a href="index.html">Home</a>
+      <a class="active" href="Table.html" onload="getPlayerData()">Injury Table</a>
+    </div>
+    <h1 class="addHeader">Injury Table</h1>
+    <div>
+      <table>
+        <thead>
+
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Position(s)</th>
+            <th>Description of Injury</th>
+            <th>Length of Injury</th>
+            <th>Rough Return Date</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="playerTable">
+        </tbody>
+      </table>
+
+    </div>
+  </body>
+  <script src="index.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</html>

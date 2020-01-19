@@ -1,0 +1,80 @@
+<html>
+  <meta charset="utf-8">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <body>
+
+    <div class="topNav">
+      <a class="active" href="index.html">Home</a>
+      <a href="Table.html">Injury Table</a>
+    </div>
+
+
+    <link rel="stylesheet" href="styles.css">
+    <h1 class="addHeader">Add Player Information</h1>
+    <p>Please fill out the form below with player details, once you are done, click submit</p>
+
+    <div>
+
+      <form name="playerInputData">
+        First Name:<br>
+        <input type="text" name="firstname" id="firstName" placeholder="First Name of Player" required>
+        <br>
+        Last Name:<br>
+        <input type="text" name="lastname" id="lastName" placeholder="Last Name of Player" required>
+        <br>
+        Age:<br>
+        <input type="number" name="age" id="age" min="1" max="120" placeholder="Age of Player" required>
+        <br><br>
+
+        Position(s): <br>
+
+        Attack:
+        <input type="checkbox" class="posn" value="1">CF
+        <input type="checkbox" class="posn" value="2">ST
+        <input type="checkbox" class="posn" value="3">RW
+        <input type="checkbox" class="posn" value="4">LW<br>
+
+        Midfield:
+        <input type="checkbox" class="posn" value="5">RM
+        <input type="checkbox" class="posn" value="6">LM
+        <input type="checkbox" class="posn" value="7">CM
+        <input type="checkbox" class="posn" value="8">CAM
+        <input type="checkbox" class="posn" value="9">CDM<br>
+
+        Defense:
+        <input type="checkbox" class="posn" value="10">CB
+        <input type="checkbox" class="posn" value="11">LB
+        <input type="checkbox" class="posn" value="12">RB
+        <input type="checkbox" class="posn" value="13">LWB
+        <input type="checkbox" class="posn" value="14">RWB<br>
+
+        Goalkeeper:
+        <input type="checkbox" class="posn" value="15">GK<br>
+
+
+        <br>
+
+        Description of Injury:<br>
+        <input type="text" name="typeOfInjury" id="typeOfInjury" placeholder="Description of Injury" required>
+        <br>
+        Length of Injury:<br>
+        <input type="number" name="lengthOfInjury" id="lengthOfInjury" min="1" placeholder="Length of Injury" required>
+        <select id="timePeriod" name="timePeriod">
+          <option value="Days">Days</option>
+          <option value="Weeks">Weeks</option>
+          <option value="Months">Months</option>
+        </select>
+        <br>
+
+        <br>
+        <input type="button" value="Submit" onclick="sendPlayerData();this.form.reset();">
+      </form>
+
+    </div>
+  </body>
+  <script src="index.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  
+
+</html>
