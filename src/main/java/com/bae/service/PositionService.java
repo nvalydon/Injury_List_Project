@@ -14,19 +14,19 @@ public class PositionService {
 
 	private PositionRepository positionRepo;
 
-//Constructor
+
 	public PositionService(PositionRepository positionRepo) {
 		super();
 		this.positionRepo = positionRepo;
 
 	}
 
-//Create Position
+
 	public Position addNewPosition(Position position) {
 		return positionRepo.save(position);
 	}
 
-//Read Position
+
 	public List<Position> getAllPositions() {
 		return this.positionRepo.findAll();
 
@@ -38,7 +38,7 @@ public class PositionService {
 
 	}
 
-// Update Members
+
 
 	public Position updatePosition(Position position, Long id) {
 		Position toUpdate = findPositionByID(id);
@@ -47,7 +47,7 @@ public class PositionService {
 
 	}
 
-// Deleting User
+
 	public boolean deletePosition(Long id) {
 
 		this.positionRepo.deleteById(id);
