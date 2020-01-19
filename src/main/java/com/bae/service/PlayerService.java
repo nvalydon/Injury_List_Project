@@ -21,14 +21,14 @@ public class PlayerService {
 		this.playerRepo = playerRepo;
 	}
 
-	// Creating Members
+	
 	public Player addNewMember(Player member) {
 
 		return this.playerRepo.save(member);
 
 	}
 
-	// Read Members
+	
 	public List<Player> readMembers() {
 		return this.playerRepo.findAll();
 
@@ -40,7 +40,7 @@ public class PlayerService {
 				() -> new MemberNotFoundException());
 	}
 
-	// Update Members
+	
 	public Player updateMember(Player player, Long id) {
 		Player toUpdate = findMemberByID(id);
 		toUpdate.setFirstName(player.getFirstName());
@@ -54,7 +54,7 @@ public class PlayerService {
 
 	}
 
-//Deleting User
+
 	public boolean deleteMember(Long id) {
 
 		if (!this.playerRepo.existsById(id)) {
